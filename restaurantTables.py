@@ -26,13 +26,17 @@ restaurant_tables = [
     [6,        'o',      'o',      'o',      'o',      'o',      'o']
 ]
 
-# ------------------------------------------------------------------------------------
-# This second layout serves as a test case where some tables ('x') are already occupied.
-# Use this for testing your logic to:
-#   - Find free tables (marked 'o')
-#   - Check if those tables meet a certain capacity (from the header row, e.g. 'T1(2)')
-#   - Potentially combine adjacent tables if one alone isn't enough for a larger party.
-# ------------------------------------------------------------------------------------
+def find_free_tables(restaurant_tables, timeslot):
+    # Get the table labels from the first row
+    table_labels = restaurant_tables[0][1:]
+    
+    # Get the status of tables in the given timeslot row
+    timeslot_row = restaurant_tables[timeslot]
+    
+    # List of tables that are free (status 'o')
+    free_tables = [table_labels[i] for i in range(len(timeslot_row) - 1) if timeslot_row[i + 1] == 'o']
+    
+    return free_tables
 
 restaurant_tables2 = [
     [0,        'T1(2)',  'T2(4)',  'T3(2)',  'T4(6)',  'T5(4)',  'T6(2)'],
